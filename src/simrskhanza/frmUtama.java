@@ -464,6 +464,8 @@ import bridging.MobileJKNPembatalanPendaftaran;
 import bridging.MobileJKNReferensiPendaftaran;
 import bridging.PCareCekKartu;
 import bridging.PCareCekReferensiTACC;
+import bridging.SatuSehatCariAllergy;
+import bridging.SatuSehatKirimAllergyIntollerance;
 import bridging.SatuSehatKirimClinicalImpression;
 import bridging.SatuSehatKirimCondition;
 import bridging.SatuSehatKirimDiagnosticReportRadiologi;
@@ -19660,6 +19662,30 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+      //alergi
+    private void btnSatuSehatCariAllergyPerformed(java.awt.event.ActionEvent event) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatCariAllergy aplikasi=new SatuSehatCariAllergy(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnSatuSehatKirimAllergyIntollerancePerformed(java.awt.event.ActionEvent event) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimAllergyIntollerance aplikasi=new SatuSehatKirimAllergyIntollerance(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    //end
+    
     private void btnReferensiPasienSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         DlgHome.dispose();
@@ -21830,8 +21856,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnSkorBromagePascaAnestesi,btnPenilaianPreInduksi,btnHasilUSGUrologi,btnHasilUSGGynecologi,btnHasilPemeriksaanEKG,btnKirimDietSatuSehat,btnMappingObatSatuSehat,
             btnRingkasanPengadaanDapur,btnKirimMedicationSatuSehat,btnKirimMedicationRequestSatuSehat,btnPenatalaksanaanTerapiOkupasi,btnKirimMedicationDispenseSatuSehat,
             btnHasilUSGNeonatus,btnHasilEndoskopiFaringLaring,btnMappingRadiologiSatuSehat,btnKirimServiceRequestRadiologiSatuSehat,btnHasilEndoskopiHidung,btnKirimSpecimenRadiologiSatuSehat,
-            btnMasterMasalahKeperawatanNeonatus,btnMasterRencanaKeperawatanNeonatus,btnPenilaianAwalKeperawatanRanapNeonatus,btnKirimObservationRadiologiSatuSehat,
-            btnKirimDiagnosticReportSatuSehat;
+            btnMasterMasalahKeperawatanNeonatus,btnMasterRencanaKeperawatanNeonatus,btnPenilaianAwalKeperawatanRanapNeonatus,btnKirimObservationRadiologiSatuSehat,btnSatuSehatCariAllergy,
+            btnSatuSehatKirimAllergyIntollerance,btnKirimDiagnosticReportSatuSehat;
     
     public void isWall(){
         try{            
@@ -24896,6 +24922,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsatu_sehat_mapping_radiologi()==true){
                 Panelmenu.add(btnMappingRadiologiSatuSehat);
+                Panelmenu.add(btnSatuSehatCariAllergy);
+                Panelmenu.add(btnSatuSehatKirimAllergyIntollerance);
                 jmlmenu++;
             }
             
@@ -29931,6 +29959,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getsatu_sehat_mapping_radiologi()==true){
             Panelmenu.add(btnMappingRadiologiSatuSehat);
+            Panelmenu.add(btnSatuSehatCariAllergy);
+            Panelmenu.add(btnSatuSehatKirimAllergyIntollerance);
             jmlmenu++;
         }
         
@@ -36135,6 +36165,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         if(akses.getsatu_sehat_mapping_radiologi()==true){
             if(btnMappingRadiologiSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnMappingRadiologiSatuSehat);
+                Panelmenu.add(btnSatuSehatCariAllergy);
+                Panelmenu.add(btnSatuSehatKirimAllergyIntollerance);
                 jmlmenu++;
             }                
         }
@@ -43398,6 +43430,23 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnKirimServiceRequestRadiologiSatuSehat.setName("btnKirimServiceRequestRadiologiSatuSehat"); 
         btnKirimServiceRequestRadiologiSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
         btnKirimServiceRequestRadiologiSatuSehat.addActionListener(this::btnKirimServiceRequestRadiologiSatuSehatActionPerformed);
+        
+        //alergi
+        btnSatuSehatCariAllergy = new widget.ButtonBig();
+        btnSatuSehatCariAllergy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnSatuSehatCariAllergy.setText("Cari Alergi Satu Sehat");
+        btnSatuSehatCariAllergy.setIconTextGap(0);
+        btnSatuSehatCariAllergy.setName("Cari Alergi Satu Sehat"); 
+        btnSatuSehatCariAllergy.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSatuSehatCariAllergy.addActionListener(this::btnSatuSehatCariAllergyPerformed);
+        
+        btnSatuSehatKirimAllergyIntollerance = new widget.ButtonBig();
+        btnSatuSehatKirimAllergyIntollerance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnSatuSehatKirimAllergyIntollerance.setText("Kirim Alergi Satu Sehat");
+        btnSatuSehatKirimAllergyIntollerance.setIconTextGap(0);
+        btnSatuSehatKirimAllergyIntollerance.setName("btnSatuSehatKirimAllergyIntollerance"); 
+        btnSatuSehatKirimAllergyIntollerance.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSatuSehatKirimAllergyIntollerance.addActionListener(this::btnSatuSehatKirimAllergyIntollerancePerformed);
         
         btnHasilEndoskopiHidung = new widget.ButtonBig();
         btnHasilEndoskopiHidung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/6088167_cold_disease_infection_nasal_nose_icon.png")));
